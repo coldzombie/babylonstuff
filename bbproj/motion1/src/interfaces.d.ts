@@ -9,7 +9,6 @@ import {
 
 export interface SceneData {
   scene: Scene;
-  audio: Sound;
   lightHemispheric: HemisphericLight;
   camera: Camera;
   player: Promise<void | ISceneLoaderAsyncResult>;

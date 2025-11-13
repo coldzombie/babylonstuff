@@ -19,17 +19,13 @@ export default function createRunScene(runScene: SceneData) {
     10000,
     0.1
   );
-  runScene.audio.stop();
+
   runScene.scene.onBeforeRenderObservable.add(() => {
     // check and respond to keypad presses
 
     if (getKeyDown() == 1 && (keyDownMap["m"] || keyDownMap["M"])) {
       keyDownHeld();
-      if (runScene.audio.isPlaying) {
-        runScene.audio.stop();
-      } else {
-        runScene.audio.play();
-      }
+     
     }
       runScene.player.then((result) => {
       let character: AbstractMesh = result!.meshes[0];
