@@ -3,19 +3,38 @@ import {
   ActionManager,
   CubeTexture,
   Mesh,
-  Skeleton
+  Skeleton,
+  _ENVTextureLoader,
 } from "@babylonjs/core";
+
 import { SceneData } from "./interfaces";
+
 import {
   keyActionManager,
   keyDownMap,
   keyDownHeld,
   getKeyDown,
-} from "./keyActionManager";
+} from "./KeyActionManager";
+
 import { characterActionManager } from "./charactorActionManager";
-import { bakedAnimations, walk, run, left, right, idle, stopAnimation, getAnimating, toggleAnimating } from "./bakedAnimations";
+
+import {
+  bakedAnimations,
+  walk,
+  idle,
+  getAnimating,
+  toggleAnimating,
+} from "./bakedAnimations";
+
+import "@babylonjs/core/Materials/Textures/Loaders/envTextureLoader";
+import "@babylonjs/core/Helpers/sceneHelpers";
+
+// havok physics collisions
+import { collisionDeclaration } from "./collisionDeclaration";
 
 export default function createRunScene(runScene: SceneData) {
+  
+  collisionDeclaration(runScene);
   runScene.scene.actionManager = new ActionManager(runScene.scene);
   keyActionManager(runScene.scene);
 
@@ -29,7 +48,8 @@ export default function createRunScene(runScene: SceneData) {
     10000,
     0.1
   );
-  
+ 
+
   // add baked in animations to player
   runScene.player.then((result) => {
     let skeleton: Skeleton = result!.skeletons[0];
@@ -39,10 +59,7 @@ export default function createRunScene(runScene: SceneData) {
   runScene.scene.onBeforeRenderObservable.add(() => {
     // check and respond to keypad presses
 
-    if (getKeyDown() == 1 && (keyDownMap["m"] || keyDownMap["M"])) {
-      keyDownHeld();
-      
-    }
+    
 
     runScene.player.then((result) => {
       let characterMoving: Boolean = false;
@@ -71,24 +88,23 @@ export default function createRunScene(runScene: SceneData) {
       if (getKeyDown() && characterMoving) {
         if (!getAnimating()) {
           walk();
-          toggleAnimating(); 
+          toggleAnimating();
         }
       } else {
         if (getAnimating()) {
           idle();
           toggleAnimating();
         }
-      }  
+      }
     });
   });
 
+  // add incremental action to player
+  runScene.player.then((result) => {
+    let characterMesh = result!.meshes[0];
+    characterActionManager(runScene.scene, characterMesh as Mesh);
+  });
 
-// add incremental action to player
-runScene.player.then((result) => {  
-  let characterMesh = result!.meshes[0];
-  characterActionManager(runScene.scene, characterMesh as Mesh);
-});
-
-  runScene.scene.onAfterRenderObservable.add(() => { });
+  runScene.scene.onAfterRenderObservable.add(() => {});
 }
 

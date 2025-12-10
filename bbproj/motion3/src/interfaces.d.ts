@@ -9,8 +9,11 @@ import {
 
 export interface SceneData {
   scene: Scene;
+  
   lightHemispheric: HemisphericLight;
   camera: Camera;
+  box1: Mesh;
+  box2: Mesh;
   player: Promise<void | ISceneLoaderAsyncResult>;
   ground: Mesh;
 }
