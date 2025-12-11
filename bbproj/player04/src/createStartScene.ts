@@ -86,10 +86,11 @@ function createBox2(scene: Scene) {
   box.position.x = -0.7;
   box.position.y = 5;
   box.position.z = 1;
+  
 
   var texture = new StandardMaterial("reflective", scene);
   texture.ambientTexture = new Texture(
-    "./assets/nature/textures/rocks.png",
+    "./assets/nature/textures/Rocks.png",
     scene
   );
   texture.diffuseColor = new Color3(1, 1, 1);
@@ -105,7 +106,7 @@ function addAssets(scene: Scene) {
   const tree1 = assetsManager.addMeshTask(
     "tree1 task",
     "",
-    "./assets/nature/gltf/",
+    "./assets/nature/glTF/",
     "BirchTree_1.gltf"
   );
   tree1.onSuccess = function (task) {
@@ -127,7 +128,7 @@ function addAssets(scene: Scene) {
   const tree2 = assetsManager.addMeshTask(
     "tree1 task",
     "",
-    "./assets/nature/gltf/",
+    "./assets/nature/glTF/",
     "BirchTree_2.gltf"
   );
   tree2.onSuccess = function (task) {
@@ -141,7 +142,7 @@ function addAssets(scene: Scene) {
   const tree3 = assetsManager.addMeshTask(
     "tree1 task",
     "",
-    "./assets/nature/gltf/",
+    "./assets/nature/glTF/",
     "BirchTree_3.gltf"
   );
   tree3.onSuccess = function (task) {

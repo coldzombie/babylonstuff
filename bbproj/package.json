@@ -6,7 +6,9 @@
   "scripts": {
     "dev": "vite --host",
     "build": "tsc && vite build",
-    "preview": "vite preview --host"
+    "preview": "vite preview --host",
+   "motion3build": " vite build motion3",
+    "motion3preview": "vite preview motion3 --host"
   },
   "devDependencies": {
     "typescript": "~5.9.3",
