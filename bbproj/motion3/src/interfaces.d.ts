@@ -1,6 +1,5 @@
 import {
   Scene,
-  Sound,
   Mesh,
   HemisphericLight,
   Camera,
