@@ -1,25 +1,13 @@
 import {
-    Scene,
-    ArcRotateCamera,
-    Vector3,
-    HemisphericLight,
-    PointLight,
-    SpotLight,
-    DirectionalLight,
-    MeshBuilder,
-    Mesh,
-    Light,
-    Camera,
-    Engine,
-    StandardMaterial,
-    Color3,
-    ShadowGenerator,
-    Texture,
-  } from "@babylonjs/core";
+  Scene,
+  Mesh,
+  HemisphericLight,
+  Camera,
+} from "@babylonjs/core";
 
 export interface SceneData {
       scene: Scene;
-      hemi?: HemisphericLight;
+      light?: HemisphericLight;
       ground?: Mesh;
       camera?: Camera;
-    }
+}
