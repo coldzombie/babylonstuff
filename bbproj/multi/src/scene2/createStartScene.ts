@@ -19,17 +19,18 @@ import {
   function createCylinder(scene: Scene) {
     let cylinder = MeshBuilder.CreateCylinder(
       "cylinder",
-      { height: 1, diameter: 0.7 },
+      { height: 4, diameter: 4 },
       scene
     );
-    cylinder.position.x = 1;
-    cylinder.position.y = 1;
-    cylinder.position.z = 1;
+    
   
     var texture = new StandardMaterial("reflective", scene);
-    texture.ambientTexture = new Texture("./assets/reflectivity.png", scene);
+    texture.ambientTexture = new Texture("./assets/textures/beans.png", scene);
     texture.diffuseColor = new Color3(1, 1, 1);
     cylinder.material = texture;
+    cylinder.position.x = -1;
+    cylinder.position.y = 2;
+    cylinder.position.z = 1;
     return cylinder;
   }
 
@@ -41,21 +42,41 @@ import {
   }
   
   function createSphere(scene: Scene) {
-    let sphere = MeshBuilder.CreateSphere(
-      "sphere",
-      { diameter: 2, segments: 32 },
+    let sphere = MeshBuilder.CreateSphere( "sphere",
+      { diameter: 2, segments: 32   },
       scene,
-    );
-    sphere.position.y = 1;
+      )
+     
+       var texture = new StandardMaterial("reflective", scene);
+     texture.ambientTexture = new Texture(
+    "./assets/textures/eye.jpeg",
+    scene
+  );
+    
+    texture.diffuseColor = new Color3(1, 1, 1);
+    sphere.position.y = 2;
+    sphere.position.x = 2;
+    sphere.position.z = 0;
+    
+    
+    sphere.material = texture;
     return sphere;
+
+   
   }
   
   function createGround(scene: Scene) {
-    let ground = MeshBuilder.CreateGround(
-      "ground",
+    let ground = MeshBuilder.CreateGround( "ground",
       { width: 6, height: 6 },
-      scene,
+      scene,)
+     
+       var texture = new StandardMaterial("reflective", scene);
+     texture.ambientTexture = new Texture(
+    "./assets/textures/Grass.png",
+    scene
     );
+     texture.diffuseColor = new Color3(1, 1, 1);
+    ground.material = texture;
     return ground;
   }
   

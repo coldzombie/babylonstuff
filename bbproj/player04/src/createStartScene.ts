@@ -71,7 +71,7 @@ function createBox1(scene: Scene) {
 
   var texture = new StandardMaterial("reflective", scene);
   texture.ambientTexture = new Texture(
-    "./assets/nature/textures/Rock.png",  
+    "./assets/nature/textures/Rocks.png",  
     scene
   );
   texture.diffuseColor = new Color3(1, 1, 1);

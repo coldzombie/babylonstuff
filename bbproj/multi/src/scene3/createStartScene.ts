@@ -16,24 +16,23 @@ import {
   } from "@babylonjs/core";
   
   
-  function createTorus(scene: Scene) {
-    let torus = MeshBuilder.CreateTorus(
-      "torus",
-      { diameter: 0.7, thickness: 0.6, tessellation: 10 },
-      scene
-    );
-    torus.position.x = -1;
-    torus.position.y = 2;
-    torus.position.z = 1;
-  
-    var texture = new StandardMaterial("reflective", scene);
-    texture.ambientTexture = new Texture("./assets/reflectivity.png", scene);
+  function createSphere3(scene: Scene) {
+    let sphere = MeshBuilder.CreateSphere( "sphere",
+      { diameter: 1, segments: 32   },
+      scene,
+      )
+       var texture = new StandardMaterial("reflective", scene);
+     texture.ambientTexture = new Texture(
+    "./assets/textures/reflectivity.png",
+    scene
+  );
     texture.diffuseColor = new Color3(1, 1, 1);
-    torus.material = texture;
-
-    return torus;
+    sphere.position.y = 2;
+    sphere.position.x = -2;
+    sphere.position.z = 1;
+    sphere.material = texture;
+    return sphere;
   }
-
   
   function createLight(scene: Scene) {
     const light = new HemisphericLight("light", new Vector3(0, 1, 0), scene);
@@ -42,21 +41,52 @@ import {
   }
   
   function createSphere(scene: Scene) {
-    let sphere = MeshBuilder.CreateSphere(
-      "sphere",
-      { diameter: 2, segments: 32 },
+    let sphere = MeshBuilder.CreateSphere( "sphere",
+      { diameter: 2, segments: 32   },
       scene,
-    );
-    sphere.position.y = 1;
+      )
+       var texture = new StandardMaterial("reflective", scene);
+     texture.ambientTexture = new Texture(
+    "./assets/textures/sun.jpg",
+    scene
+  );
+    texture.diffuseColor = new Color3(1, 1, 1);
+    sphere.position.y = 4;
+    sphere.position.x = 2;
+    sphere.position.z = 0;
+    sphere.material = texture;
+    return sphere;
+  }
+   function createSphere2(scene: Scene) {
+    let sphere = MeshBuilder.CreateSphere( "sphere",
+      { diameter: 2, segments: 32   },
+      scene,
+      )
+       var texture = new StandardMaterial("reflective", scene);
+     texture.ambientTexture = new Texture(
+    "./assets/textures/earth.jpg",
+    scene
+  );
+    texture.diffuseColor = new Color3(1, 1, 1);
+    sphere.position.y = 2;
+    sphere.position.x = 0;
+    sphere.position.z = 0;
+    sphere.material = texture;
     return sphere;
   }
   
   function createGround(scene: Scene) {
-    let ground = MeshBuilder.CreateGround(
-      "ground",
-      { width: 6, height: 6 },
-      scene,
+    let ground = MeshBuilder.CreateGround( "ground",
+      { width: 12, height: 12 },
+      scene,)
+     
+       var texture = new StandardMaterial("reflective", scene);
+     texture.ambientTexture = new Texture(
+    "./assets/textures/dirt.webp",
+    scene
     );
+     texture.diffuseColor = new Color3(1, 1, 1);
+    ground.material = texture;
     return ground;
   }
   
@@ -90,9 +120,10 @@ import {
     let that: SceneData = { scene: new Scene(engine) };
     // that.scene.debugLayer.show();
   
-    that.torus = createTorus(that.scene);
+    that.torus = createSphere3(that.scene);
     that.light = createLight(that.scene);
     that.sphere = createSphere(that.scene);
+     that.sphere = createSphere2(that.scene);
     that.ground = createGround(that.scene);
     that.camera = createArcRotateCamera(that.scene);
     return that;

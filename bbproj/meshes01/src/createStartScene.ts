@@ -93,7 +93,7 @@ function createDirectionalShadows(light: DirectionalLight, sphere: Mesh ,box: Me
   myMaterial.specularColor = new Color3(0.5, 0.6, 0.87);
   myMaterial.emissiveColor = new Color3(1, 0.4, 0.5);
   myMaterial.ambientColor = new Color3(0.23, 0.98, 0.53);
-  myMaterial.ambientTexture = new Texture("./../meshes01/assets/textures/grass.jpg", scene);
+  myMaterial.ambientTexture = new Texture("./meshe01/assets/textures/grass.jpg", scene);
   return myMaterial
   }
 
@@ -113,7 +113,11 @@ function createDirectionalShadows(light: DirectionalLight, sphere: Mesh ,box: Me
     let box = MeshBuilder.CreateBox("box",{size: 1}, scene);
     box.position.x = 3;
     box.position.y = 1;
-    box.material = myMaterial;
+    //box.material = myMaterial;
+    var texture = new StandardMaterial("reflective", scene);
+    texture.ambientTexture = new Texture("./assets/textures/grass.jpg", scene);
+    texture.diffuseColor = new Color3(1, 1, 1);
+    box.material = texture;
     return box;
   }
 
