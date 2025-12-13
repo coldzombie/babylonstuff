@@ -19,10 +19,55 @@ import {
   
   function createBox(scene: Scene) {
     let box = MeshBuilder.CreateBox("box",{size: 1}, scene);
-    box.position.y = 3;
+     var texture = new StandardMaterial("reflective", scene);
+     texture.ambientTexture = new Texture(
+    "./assets/textures/reflectivity.png",
+    scene
     
+     )
+    box.position.y = 0.5;
+    box.position.x = -1;
+    texture.diffuseColor = new Color3(1, 1, 1);
+     box.material = texture;
+   
     return box;
+     
   }
+  function createBox2(scene: Scene) {
+    let box = MeshBuilder.CreateBox("box",{size: 1}, scene);
+     var texture = new StandardMaterial("reflective", scene);
+     texture.ambientTexture = new Texture(
+    "./assets/textures/reflectivity.png",
+    scene
+    
+     )
+    box.position.y = 1.5;
+    box.position.x = -1;
+    box.position.z = 0.5;
+    texture.diffuseColor = new Color3(1, 1, 1);
+     box.material = texture;
+   
+    return box;
+     
+  }
+  function createBox3(scene: Scene) {
+    let box = MeshBuilder.CreateBox("box",{size: 1}, scene);
+     var texture = new StandardMaterial("reflective", scene);
+     texture.ambientTexture = new Texture(
+    "./assets/textures/reflectivity.png",
+    scene
+    
+     )
+    box.position.y = 0.5;
+    box.position.x = -1;
+    box.position.z = 1;
+    texture.diffuseColor = new Color3(1, 1, 1);
+     box.material = texture;
+   
+    return box;
+     
+  }
+  
 
   
   function createLight(scene: Scene) {
@@ -31,23 +76,40 @@ import {
     return light;
   }
   
+  
   function createSphere(scene: Scene) {
-    let sphere = MeshBuilder.CreateSphere(
-      "sphere",
+    let sphere = MeshBuilder.CreateSphere( "sphere",
       { diameter: 2, segments: 32 },
       scene,
-      
-    );
+      )
+     
+       var texture = new StandardMaterial("reflective", scene);
+     texture.ambientTexture = new Texture(
+    "./assets/textures/Grass.png",
+    scene
+  );
+    
+    texture.diffuseColor = new Color3(1, 1, 1);
     sphere.position.y = 1;
+    sphere.position.x = 2;
+    sphere.material = texture;
     return sphere;
+
+   
   }
   
   function createGround(scene: Scene) {
-    let ground = MeshBuilder.CreateGround(
-      "ground",
+    let ground = MeshBuilder.CreateGround( "ground",
       { width: 6, height: 6 },
-      scene,
+      scene,)
+     
+       var texture = new StandardMaterial("reflective", scene);
+     texture.ambientTexture = new Texture(
+    "./assets/textures/wood.jpg",
+    scene
     );
+     texture.diffuseColor = new Color3(1, 1, 1);
+    ground.material = texture;
     return ground;
   }
   function createSky(scene: Scene) {
@@ -98,6 +160,8 @@ import {
     // that.scene.debugLayer.show();
   
     that.box = createBox(that.scene);
+    that.box = createBox2(that.scene);
+    that.box = createBox3(that.scene);
     that.light = createLight(that.scene);
     that.sphere = createSphere(that.scene);
     that.ground = createGround(that.scene);
